@@ -1,5 +1,13 @@
 const input = document.querySelector(".input");
 const addBtn = document.getElementById("add");
+const delBtn = document.getElementById("deleteAll");
+const modal = document.querySelector(".modal");
+const overlay = document.querySelector(".overlay");
+const yesBtn = document.querySelector(".yes");
+const noBtn = document.querySelector(".no");
+const closeBtn = document.querySelector(".close-modal");
+const copyBtn = document.getElementById("copy");
+
 let items = [];
 
 //Add functionality
@@ -7,7 +15,9 @@ const addHTML = function (item) {
   const html = `
   <div class="wrapper">
     <div class="typing-demo">
-    <li class='list_item'>${item}</li>
+    <li class='list_item display-6'>${
+      item.charAt(0).toUpperCase() + item.slice(1)
+    }</li>
     </div>
 </div>
           `;
@@ -39,8 +49,9 @@ if (!(items.length === 0)) {
 //Event Listener
 addBtn.addEventListener("click", function (event) {
   event.preventDefault();
-  if (!input.value) return;
-  const item = input.value;
+  if (!input.value || input.value === " ") return;
+  const item = input.value.trim();
+  if (item === "") return;
   input.value = "";
   items.push(item);
   localStorage.setItem("items", JSON.stringify(items));
@@ -50,7 +61,39 @@ addBtn.addEventListener("click", function (event) {
   });
 });
 
-//Auto-refresh
+delBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+
+  items.splice(0, items.length);
+  localStorage.clear();
+  location.reload();
+});
+
+copyBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (items.length === 0) return;
+
+  navigator.clipboard.writeText(items);
+});
+
+//Listen Enter button
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    if (!input.value || input.value === " ") return;
+    const item = input.value.trim();
+    if (input.value === "") return;
+    input.value = "";
+    items.push(item);
+    localStorage.setItem("items", JSON.stringify(items));
+    addHTML(item);
+    document
+      .querySelector(".list_item")
+      .addEventListener("click", function (e) {
+        remove(e);
+      });
+  }
+});
+//Refresh after 1 min
 let time;
 document.addEventListener("keydown", function () {
   time = new Date().getTime();
