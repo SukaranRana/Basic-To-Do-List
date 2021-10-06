@@ -1,178 +1,70 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+body {
+  background-color: #121212 !important;
+  color: #ffffff;
 }
 
-body {
-  font-family: "Montserrat", sans-serif;
-  /* overflow: scroll; */
-  background: linear-gradient(
-    60deg,
-    rgba(84, 58, 183, 1) 0%,
-    rgba(0, 172, 193, 1) 100%
-  );
-}
 h1 {
+  color: rgb(128, 0, 128);
   font-family: "Bebas Neue", cursive;
-  font-size: 6vw;
-  text-align: left;
-  top: 5vh;
-  color: #072d75;
-  margin-bottom: 0;
-}
-form {
-  display: flex;
-}
-p,
-.quote {
-  margin: 0;
-  padding: 0;
 }
 .quote {
-  font-family: "Bebas Neue", cursive;
-  font-size: 3vw;
+  color: rgb(127, 127, 127);
+  font-family: "Montserrat", sans-serif;
 }
 .input {
-  border: 0;
-  border-bottom: 2px solid gray;
-  outline: 0;
-  padding-left: 9px;
-  background-color: rgb(223, 229, 231);
+  background-color: transparent;
+  color: white;
+  width: 80%;
+  height: 102%;
   text-align: center;
-  height: 3vw;
-  float: left;
-  width: 16vw;
-  margin-top: 6px;
-  border-radius: 32px;
-  font-size: 1vw;
+  border-radius: 35vw;
+  /* border-bottom: 3px solid rgb(128, 0, 128); */
+  outline: 0;
+  border: none;
+  /* border: 1px solid black; */
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box;
 }
-#add {
-  font-size: 1vw;
+.input:focus {
+  animation: borderColor 1s ease-in-out;
+  animation-fill-mode: forwards;
+
+  /* border-bottom: 3px solid rgb(128, 0, 128); */
+}
+@keyframes borderColor {
+  from {
+    border-bottom: #000000;
+  }
+  to {
+    border-bottom: 3px solid rgb(128, 0, 128);
+  }
+}
+#add,
+#copy,
+#deleteAll {
   border: 0.1em solid #ffffff;
   background-color: transparent;
-  border-radius: 2em;
+  border-radius: 2rem;
+  width: 5.5rem;
   font-weight: 300;
   color: #ffffff;
   text-align: center;
   transition: all 0.2s;
-  height: 3vw;
-  margin-left: 0.5vw;
-  float: left;
-  width: 6vw;
-  margin-top: 6px;
 }
-#add:hover {
+#add:hover,
+#copy:hover,
+#deleteAll:hover {
   color: #000000;
   background-color: #ffffff;
 }
-@media all and (max-width: 30em) {
-   #add {
-    display: block;
-    margin: 0.4em auto;
-  }
-}
 
-section {
-  position: absolute;
-  top: 20%;
-  left: auto;
-  font-size: 0.85vw;
-}
+/* .section {
+  overflow: auto !important;
+} */
+
 .hidden {
   display: none;
-}
-
-.header {
-  overflow: hidden;
-  position: relative;
-  text-align: center;
-  background: linear-gradient(
-    60deg,
-    rgba(84, 58, 183, 1) 0%,
-    rgba(0, 172, 193, 1) 100%
-  );
-  /* color: white; */
-}
-.section {
-  border: #609 3px;
-  width: 200px;
-  height: 100px;
-  overflow: scroll;
-}
-.inner-header {
-  height: 75vh;
-  width: 100%;
-  margin: 0;
-  padding: 0;
-}
-
-.flex {
-  /*Flexbox for containers*/
-  display: flex;
-  text-align: center;
-}
-
-.waves {
-  position: relative;
-  width: 100%;
-  height: 15vh;
-  margin-bottom: -7px; /*Fix for safari gap*/
-  min-height: 100px;
-  max-height: 150px;
-}
-
-.content {
-  position: relative;
-  height: 20vh;
-  text-align: center;
-  background-color: white;
-}
-.list_item:hover {
-  opacity: 0.5;
-  text-decoration: line-through;
-}
-/* Animation */
-
-.parallax > use {
-  animation: move-forever 25s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
-}
-.parallax > use:nth-child(1) {
-  animation-delay: -2s;
-  animation-duration: 7s;
-}
-.parallax > use:nth-child(2) {
-  animation-delay: -3s;
-  animation-duration: 10s;
-}
-.parallax > use:nth-child(3) {
-  animation-delay: -4s;
-  animation-duration: 13s;
-}
-.parallax > use:nth-child(4) {
-  animation-delay: -5s;
-  animation-duration: 20s;
-}
-@keyframes move-forever {
-  0% {
-    transform: translate3d(-90px, 0, 0);
-  }
-  100% {
-    transform: translate3d(85px, 0, 0);
-  }
-}
-/*Shrinking for mobile*/
-@media (max-width: 768px) {
-  .waves {
-    height: 40px;
-    min-height: 40px;
-  }
-  .content {
-    height: 30vh;
-  }
-  h1 {
-    font-size: 24px;
-  }
 }
 .wrapper {
   align-items: center;
@@ -185,7 +77,14 @@ section {
   overflow: hidden;
   border-right: 3px solid;
   font-family: monospace;
-  font-size: 2em;
+  font-size: 3rem;
+}
+.list_item {
+  color: #b9b083;
+}
+.list_item:hover {
+  opacity: 0.5;
+  text-decoration: line-through;
 }
 
 @keyframes typing {
