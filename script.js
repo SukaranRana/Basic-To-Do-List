@@ -1,8 +1,8 @@
+"use strict";
+
 const input = document.querySelector(".input");
 const addBtn = document.getElementById("add");
 const delBtn = document.getElementById("deleteAll");
-const modal = document.querySelector(".modal");
-const overlay = document.querySelector(".overlay");
 const yesBtn = document.querySelector(".yes");
 const noBtn = document.querySelector(".no");
 const closeBtn = document.querySelector(".close-modal");
@@ -63,10 +63,18 @@ addBtn.addEventListener("click", function (event) {
 
 delBtn.addEventListener("click", function (event) {
   event.preventDefault();
-
-  items.splice(0, items.length);
-  localStorage.clear();
-  location.reload();
+  window.open("#modal", "_self");
+  yesBtn.addEventListener("click", function () {
+    items.splice(0, items.length);
+    localStorage.clear();
+    window.open("#", "_self");
+    input.focus();
+    location.reload();
+  });
+  noBtn.addEventListener("click", function () {
+    window.open("#", "_self");
+    input.focus();
+  });
 });
 
 copyBtn.addEventListener("click", function (e) {
@@ -103,3 +111,28 @@ function refresh() {
   else setTimeout(refresh, 10000);
 }
 setTimeout(refresh, 10000);
+
+//Splash screen
+const splash = document.querySelector(".splash");
+document.addEventListener("DOMContentLoaded", (e) => {
+  setTimeout(() => {
+    splash.classList.add("hidden-splash");
+  }, 2000);
+});
+
+//Bubbles
+let sec;
+input.addEventListener("keydown", () => {
+  document.querySelector(".typingAnimation").classList.remove("hidden");
+  sec = 3000;
+});
+
+input.addEventListener("keyup", (e) => {
+  setTimeout(
+    () => document.querySelector(".typingAnimation").classList.add("hidden"),
+    sec
+  );
+  // if (sec === 0) {
+  //   // document.querySelector(".typingAnimation").classList.add("hidden");
+  // }
+});
