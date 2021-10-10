@@ -4,140 +4,138 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do List</title>
     <link rel="stylesheet" href="style.css" />
+    <!-- Bootstrap -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF"
       crossorigin="anonymous"
     />
-    <title>Country Information</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Favicon -->
     <link
       rel="shortcut icon"
-      href="https://img.icons8.com/fluency/48/000000/globe-earth.png"
+      href="
+      https://img.icons8.com/nolan/64/tasklist.png"
     />
   </head>
   <body>
+    <!-- Splash Screen -->
     <div class="splash">
-      <!-- https://codepen.io/HatScripts/pen/BGJPzZ -->
-      <svg
-        class="globe fade-in"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        version="1.1"
-        width="350"
-        height="350"
-      >
-        <defs>
-          <clipPath id="clip">
-            <circle cx="175" cy="175" r="157" />
-          </clipPath>
-        </defs>
-        <circle cx="175" cy="175" r="170" fill="#2314a1">
-          <animate
-            attributeName="r"
-            calcMode="spline"
-            keySplines="0.3 0 0.7 1;0.3 0 0.7 1"
-            values="170;175;170"
-            dur="5s"
-            repeatCount="indefinite"
-          />
-        </circle>
-        <circle cx="175" cy="175" r="157" fill="#4294fe" />
-        <g clip-path="url(#clip)">
-          <g>
-            <g id="land" fill="#43d8aa">
-              <path
-                d="M14 101v12a6 6 0 0 1 6 6 6 6 0 0 1-6 6v12h40v-12a6 6 0 0 1-6-6 6 6 0 0 1 6-6v-12H14zm75 177v8a7.5 7.5 0 0 1 7.5 7.5A7.5 7.5 0 0 1 89 301v9h32v-9a7.5 7.5 0 0 1-7.5-7.5 7.5 7.5 0 0 1 7.5-7.5v-8z"
-              />
-              <rect y="9" x="197" width="52" height="30" rx="15" ry="15" />
-              <rect y="57" x="-34" width="150" height="56" rx="28" ry="28" />
-              <rect y="81" x="176" width="65" height="30" ry="15" rx="15" />
-              <rect y="125" x="-3" width="82" height="39" ry="19.5" rx="19.5" />
-              <rect y="139" x="189" width="195" height="64" rx="32" ry="32" />
-              <rect y="218" x="250" width="100" height="40" rx="20" ry="20" />
-              <rect y="230" x="-17" width="180" height="56" ry="28" rx="28" />
-              <rect y="301" x="56" width="104" height="30" rx="15" ry="15" />
-            </g>
-            <use transform="translate(400 0)" xlink:href="#land" />
-            <animateTransform
-              attributeName="transform"
-              attributeType="XML"
-              type="translate"
-              from="0 0"
-              to="-400 0"
-              dur="15s"
-              repeatCount="indefinite"
-            />
-          </g>
-          <g>
-            <g id="clouds" fill="#e6ebfc">
-              <path
-                d="M242 87v6.03a3 3 0 0 1 .38-.03 3 3 0 0 1 3 3 3 3 0 0 1-3 3 3 3 0 0 1-.38-.03V105h18v-6a3 3 0 0 1-3-3 3 3 0 0 1 3-3v-6zm53-2v4a5 5 0 0 1 0 10v4h30v-4a5 5 0 0 1 0-10v-4h-30zM48 209v6a4.5 4.5 0 1 1 0 9v3h29v-3a4.5 4.5 0 1 1 0-9v-6zM81 65v3a3.5 3.5 0 1 1 0 7v2h16v-2a3.5 3.5 0 1 1 0-7v-3zm18 181v4a5 5 0 0 1 0 10v4h30v-4a5 5 0 0 1 0-10v-4z"
-              />
-              <rect y="50" x="64" width="53" height="18" rx="9" ry="9" />
-              <rect y="53" x="269" width="80" height="36" rx="18" ry="18" />
-              <rect y="75" x="0" width="112" height="22" rx="11" ry="11" />
-              <rect y="83" x="236" width="32" height="10" rx="5" ry="5" />
-              <rect y="99" x="227" width="112" height="24" rx="12" ry="12" />
-              <rect y="102" x="146" width="36" height="16" rx="8" ry="8" />
-              <rect y="172" x="119" width="62" height="30" rx="15" ry="15" />
-              <rect y="197" x="0" width="90" height="18" rx="9" ry="9" />
-              <rect y="293" x="219" width="30" height="16" rx="8" ry="8" />
-              <rect y="224" x="31" width="118" height="26" rx="13" ry="13" />
-              <rect y="260" x="77" width="77" height="36" rx="18" ry="18" />
-              <rect y="264" x="228" width="44" height="22" rx="11" ry="11" />
-            </g>
-            <use transform="translate(400 0)" xlink:href="#clouds" />
-            <animateTransform
-              attributeName="transform"
-              attributeType="XML"
-              type="translate"
-              from="0 0"
-              to="-400 0"
-              dur="10s"
-              repeatCount="indefinite"
-            />
-          </g>
-        </g>
-      </svg>
+      <div class="fade-in"><img src="https://img.icons8.com/nolan/64/tasklist.png" alt="Splash Screen"></div>
     </div>
-    <div class="container">
-      <div class="row mt-2">
-        <form class="form">
-          <div class="form-control">
-            <span class="d-flex justify-content-center">
-              <!-- <label for="">Search country:</label> -->
-              <input
-                class="searchInput d-flex justify-content-center"
-                autofocus
-                placeholder="Search for a country eg: india"
-                type="text"
-              /><button
-                type="submit"
-                aria-label="Click to search"
-                class="offset-1 searchButton"
-              >
-                <img
-                  src="https://img.icons8.com/external-prettycons-lineal-color-prettycons/32/000000/external-search-travel-prettycons-lineal-color-prettycons.png"
-                  alt="search country image"
-                />
-              </button>
-            </span>
+    <!-- Main Content -->
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-12 col-md-4 d-flex justify-content-center mt-1 p-0">
+          <h1 class="display-1">To-Do List</h1>
+        </div>
+        <div
+          class="
+          col-sm-12 col-md-7
+            quote
+           d-flex
+           justify-content-center
+           align-items-center
+          "
+        >
+          Everyday's To-Do List:
+          <span id="flip"
+            ><div><div class="d-flex align-items-center justify-content-center">Do</div></div
+            ><div><div>Trust</div></div><div><div>Listen</div></div
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-7 col-sm-4 offset-sm-2 mx-auto display-6">
+          <input type="text" class="input" autofocus placeholder="Add item"  />
+        </div>
+        <div class="col-md-3 col-sm-8 offset-sm-2 p-2 m-1 pt-1 mx-auto">
+          <span
+            ><button class="btn m-1" type="submit" id="add"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+              width="32" height="32"
+              viewBox="0 0 172 172"
+              style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#9b59b6"><path d="M86,6.88c-43.65603,0 -79.12,35.46397 -79.12,79.12c0,43.65603 35.46397,79.12 79.12,79.12c43.65603,0 79.12,-35.46397 79.12,-79.12c0,-43.65603 -35.46397,-79.12 -79.12,-79.12zM86,13.76c39.93779,0 72.24,32.30221 72.24,72.24c0,39.93779 -32.30221,72.24 -72.24,72.24c-39.93779,0 -72.24,-32.30221 -72.24,-72.24c0,-39.93779 32.30221,-72.24 72.24,-72.24zM85.94625,58.43297c-1.89722,0.02966 -3.41223,1.58976 -3.38625,3.48703v20.64h-20.64c-1.24059,-0.01754 -2.39452,0.63425 -3.01993,1.7058c-0.62541,1.07155 -0.62541,2.39684 0,3.46839c0.62541,1.07155 1.77935,1.72335 3.01993,1.7058h20.64v20.64c-0.01754,1.24059 0.63425,2.39452 1.7058,3.01993c1.07155,0.62541 2.39684,0.62541 3.46839,0c1.07155,-0.62541 1.72335,-1.77935 1.7058,-3.01993v-20.64h20.64c1.24059,0.01754 2.39452,-0.63425 3.01993,-1.7058c0.62541,-1.07155 0.62541,-2.39684 0,-3.46839c-0.62541,-1.07155 -1.77935,-1.72335 -3.01993,-1.7058h-20.64v-20.64c0.01273,-0.92983 -0.35149,-1.82522 -1.00967,-2.48214c-0.65819,-0.65692 -1.55427,-1.01942 -2.48408,-1.00489z"></path></g></g></svg></button
+            ><button class="btn m-1" type="submit" id="copy"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+              width="32" height="32"
+              viewBox="0 0 172 172"
+              style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#9b59b6"><path d="M75.25,9.40625c-6.04687,0 -11.15313,3.89687 -12.76562,9.40625h-19.48437c-9.675,0 -17.46875,7.79375 -17.46875,17.46875v110.1875c0,9.675 7.79375,17.46875 17.46875,17.46875h86c9.675,0 17.46875,-7.79375 17.46875,-17.46875v-110.1875c0,-9.675 -7.79375,-17.46875 -17.46875,-17.46875h-19.48437c-1.74688,-5.50937 -6.85312,-9.40625 -12.76562,-9.40625zM75.25,17.46875h21.5c2.95625,0 5.375,2.41875 5.375,5.375c0,2.95625 -2.41875,5.375 -5.375,5.375h-21.5c-2.95625,0 -5.375,-2.41875 -5.375,-5.375c0,-2.95625 2.41875,-5.375 5.375,-5.375zM43,26.875h19.48438c1.74688,5.50937 6.85313,9.40625 12.76563,9.40625h21.5c6.04688,0 11.15313,-3.89688 12.76563,-9.40625h19.48438c5.24062,0 9.40625,4.16563 9.40625,9.40625v110.1875c0,5.24062 -4.16563,9.40625 -9.40625,9.40625h-86c-5.24063,0 -9.40625,-4.16563 -9.40625,-9.40625v-110.1875c0,-5.24062 4.16562,-9.40625 9.40625,-9.40625zM56.4375,73.90625c-2.28438,0 -4.03125,1.74688 -4.03125,4.03125c0,2.28437 1.74687,4.03125 4.03125,4.03125h6.71875c2.28437,0 4.03125,-1.74688 4.03125,-4.03125c0,-2.28437 -1.74688,-4.03125 -4.03125,-4.03125zM84.65625,73.90625c-2.28437,0 -4.03125,1.74688 -4.03125,4.03125c0,2.28437 1.74688,4.03125 4.03125,4.03125h29.5625c2.28437,0 4.03125,-1.74688 4.03125,-4.03125c0,-2.28437 -1.74688,-4.03125 -4.03125,-4.03125zM56.4375,95.40625c-2.28438,0 -4.03125,1.74688 -4.03125,4.03125c0,2.28437 1.74687,4.03125 4.03125,4.03125h6.71875c2.28437,0 4.03125,-1.74688 4.03125,-4.03125c0,-2.28437 -1.74688,-4.03125 -4.03125,-4.03125zM84.65625,95.40625c-2.28437,0 -4.03125,1.74688 -4.03125,4.03125c0,2.28437 1.74688,4.03125 4.03125,4.03125h29.5625c2.28437,0 4.03125,-1.74688 4.03125,-4.03125c0,-2.28437 -1.74688,-4.03125 -4.03125,-4.03125zM56.4375,115.5625c-2.28438,0 -4.03125,1.74688 -4.03125,4.03125c0,2.28437 1.74687,4.03125 4.03125,4.03125h6.71875c2.28437,0 4.03125,-1.74688 4.03125,-4.03125c0,-2.28437 -1.74688,-4.03125 -4.03125,-4.03125zM84.65625,115.5625c-2.28437,0 -4.03125,1.74688 -4.03125,4.03125c0,2.28437 1.74688,4.03125 4.03125,4.03125h29.5625c2.28437,0 4.03125,-1.74688 4.03125,-4.03125c0,-2.28437 -1.74688,-4.03125 -4.03125,-4.03125z"></path></g></g></svg></button>
+            <button class="btn" type="submit" id="deleteAll"><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+              width="32" height="32"
+              viewBox="0 0 172 172"
+              style=" fill:#000000;"><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style="mix-blend-mode: normal"><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#9b59b6"><path d="M86.24998,19.14844c-4.96224,0.06221 -8.95934,4.08937 -8.98436,9.05194v3.16122l-39.50612,-5.15848c-1.26205,-0.11441 -2.38778,0.79179 -2.54557,2.04915c-0.15779,1.25736 0.70912,2.41362 1.9603,2.61461l36.60407,4.77596l-10.96062,4.60274c-0.868,0.36521 -1.43442,1.21303 -1.43955,2.15472l-1.41658,-0.57936l-1.20924,-2.88171c-0.50279,-1.19744 -1.8811,-1.76057 -3.07855,-1.2578l-12.90013,5.41502c-0.57275,0.23015 -1.02884,0.68103 -1.26555,1.2511c-0.23672,0.57007 -0.23416,1.21139 0.0071,1.77956l1.6705,3.93021h-19.33412c-1.29873,0 -2.35156,1.05283 -2.35156,2.35156c0,1.29873 1.05283,2.35156 2.35156,2.35156h9.51976l11.17189,84.68184c1.08273,7.57808 7.67405,13.40929 15.33174,13.40929h42.89502c7.65938,0 14.24959,-5.8312 15.33568,-13.4375l11.16795,-84.65625h9.51976c1.29873,0 2.35156,-1.05283 2.35156,-2.35156c0,-1.29873 -1.05283,-2.35156 -2.35156,-2.35156h-27.76602l0.9212,-3.71828c0.14834,-0.59804 0.04973,-1.23063 -0.27361,-1.75514c-0.32493,-0.52968 -0.84743,-0.90816 -1.45201,-1.05177l-13.59038,-3.31804c-1.26243,-0.30722 -2.535,0.46666 -2.843,1.7289l-0.76636,3.13236l-12.61537,-5.1552l-1.515,-3.60936l68.95314,8.99748c0.10181,0.01342 0.20438,0.02022 0.30707,0.02034c1.1736,-0.0041 2.15924,-0.8841 2.29579,-2.04974c0.15182,-1.29543 -0.76883,-2.47113 -2.06287,-2.63435l-40.21408,-5.23853v-7.20297c0,-4.91812 -3.86874,-9.05194 -8.78687,-9.05194zM86.24867,23.85156h13.13503c2.32637,0 4.08505,2.02379 4.08505,4.34882v6.58949l-21.5,-2.81479v-3.7747c0.022,-2.36594 1.91463,-4.28904 4.27992,-4.34882zM75.37269,40.07498l3.59493,8.51654l-3.60017,1.46317h-6.07902l-2.53134,-6.41168zM55.32864,42.90158l0.66072,1.53797l-2.31285,5.61514h-5.3914l-1.52287,-3.58115zM97.79915,45.34435l9.02176,2.15866l-0.63513,2.55168h-9.51058l0.2782,-1.30373zM82.98181,46.0031l8.98043,3.66972l-0.08858,0.38187h-7.49101c0.04053,-0.38006 -0.01731,-0.76415 -0.16797,-1.11542zM60.06851,46.89478l3.46698,1.3923l0.7014,1.76761h-5.47933zM38.11513,54.75781h86.41467l-11.08397,84.01784c-0.75384,5.27758 -5.34319,9.37279 -10.67586,9.37279h-42.89502c-5.33234,0 -9.92176,-4.09477 -10.67258,-9.34917zM63.63129,70.81654c-0.66097,-0.01245 -1.29665,0.2539 -1.75134,0.7338c-0.45468,0.4799 -0.68636,1.12902 -0.63828,1.78836l3.28392,52.54535c0.07756,1.23848 1.1041,2.20355 2.345,2.20459c0.04938,0 0.09889,0.00011 0.14894,-0.00459c1.29593,-0.08117 2.28079,-1.19734 2.2,-2.49329l-3.28392,-52.54535c-0.06418,-1.23255 -1.07032,-2.20574 -2.30432,-2.22887zM81.22798,70.84148c-1.27124,0.03726 -2.28251,1.07846 -2.28267,2.35025v52.54535c0,1.29873 1.05283,2.35156 2.35156,2.35156c1.29873,0 2.35156,-1.05283 2.35156,-2.35156v-52.54535c-0.00008,-0.63557 -0.25742,-1.24404 -0.7134,-1.68679c-0.45598,-0.44275 -1.07176,-0.68208 -1.70705,-0.66346zM99.13437,70.84148c-1.2714,-0.0422 -2.34587,0.9343 -2.42505,2.20393l-3.28523,52.54535c-0.03879,0.62256 0.17135,1.23503 0.58419,1.70262c0.41284,0.4676 0.99455,0.75202 1.61711,0.79066c0.05005,0.00336 0.10122,0.00459 0.1496,0.00459c1.24065,-0.00138 2.2668,-0.96636 2.34434,-2.20459l3.28392,-52.54535c0.03971,-0.63439 -0.17907,-1.25783 -0.60651,-1.72828c-0.42743,-0.47045 -1.0271,-0.74783 -1.66238,-0.76895z"></path></g></g></svg></button>
+          </span>
+        </div>
+      </div>
+      <!-- bubbles -->
+      <div class="container typingAnimation hidden">
+      <div class="row  p-2">
+        <div class="col-md-1 col-sm-1 col-lg-1 col-xs-1">
+          <div class="bubble hidden">
+            <div class="dot"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
           </div>
-        </form>
+        </div>
+      </div>
+      </div>
+
+      
+      <div class="row">
+        <div class="section">
+          <section>
+            <ul class="todolist">
+              <li class="hidden">Flour</li>
+            </ul>
+          </section>
+        </div>
       </div>
     </div>
+</div>
+
+<!-- Modal -->
+<div id="modal" class="container-fluid">
+  <div class="modal-content row">
+    <div class="header">
+      <h1>Do you wish to clear all list items?</h1>
+    </div>
+    <div class="copy row">
+      <span class="yes col-md-3 offset-sm-1 offset-md-1 col-sm-5 "><a class="yes-link" href="#">Yes</a></span>
+      <span class="no col-md-3 col-sm-5 offset-sm-1 offset-md-1"><a class="yes-link" href="#">No</a></span>
+    </div>
+  </div>
+  <div class="overlay"></div>
+</div>
+
+
+
+<!-- Including scripts -->
     <script
+      defer
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
       integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
       crossorigin="anonymous"
     ></script>
     <script
+      defer
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js"
       integrity="sha384-PsUw7Xwds7x08Ew3exXhqzbhuEYmA2xnwc8BuD6SEr+UmEHlX8/MCltYEodzWA4u"
       crossorigin="anonymous"
     ></script>
-    <script src="script.js"></script>
+    <script defer src="script.js"></script>
   </body>
 </html>
