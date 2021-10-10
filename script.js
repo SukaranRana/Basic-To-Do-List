@@ -1,130 +1,138 @@
 "use strict";
 
-const input = document.querySelector(".searchInput");
-const searchBtn = document.querySelector(".searchButton");
+const input = document.querySelector(".input");
+const addBtn = document.getElementById("add");
+const delBtn = document.getElementById("deleteAll");
+const yesBtn = document.querySelector(".yes");
+const noBtn = document.querySelector(".no");
+const closeBtn = document.querySelector(".close-modal");
+const copyBtn = document.getElementById("copy");
 
-searchBtn.addEventListener("click", function (e) {
-  e.preventDefault();
-  if (input.value == "") {
-    input.placeholder = "Enter a country eg:india";
-    input.style.borderBottom = "2px solid #f0ad4e";
-  }
-  const country = input.value;
-  input.value = "";
-  fetch(`https://restcountries.com/v2/name/${country}?fullText=true`)
-    .then((response) => {
-      if (!response.ok) throw new Error(`${country} is not a country.`);
-      return response.json();
-    })
-    .then((data) => {
-      if (data.status != 200) {
-        input.style.borderBottom = "solid 2px #d9534f";
-        input.placeholder = "Enter correct country eg:india";
-      }
-      renderCovid(data[0].alpha2Code);
-      renderHtml(data[0]);
-      input.style.borderBottom = "solid 2px rgb(228, 228, 228)";
-      input.placeholder = "Search for a country eg:india";
-    })
-    .catch((err) => console.log(`${err.message}`));
-});
+let items = [];
 
-const renderCovid = function (countryCode) {
-  const code = countryCode.toLowerCase();
-  fetch(
-    `https://covid-19-data.p.rapidapi.com/country/code?code=${code}&format=json`,
-    {
-      method: "GET",
-      headers: {
-        "x-rapidapi-host": "covid-19-data.p.rapidapi.com",
-        "x-rapidapi-key": "772acdeb52mshc5fd4623b67ebfcp1092c5jsn4a00c8b1fcf5",
-      },
-    }
-  )
-    .then((response) => response.json())
-    .then((data) => renderCovidHtml(data[0]))
-    .catch((err) => {
-      console.error(err);
-    });
-};
-const renderCovidHtml = function (covid) {
+//Add functionality
+const addHTML = function (item) {
   const html = `
-  <div class="offset-lg-1 col-lg-2 text-light bg-dark">Covid Updates</div>
-  <div class="col-lg-2 text-light bg-primary">Confirmed:${covid.confirmed
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</div>
-  <div class="col-lg-2 text-light bg-success">Recovered:${covid.recovered
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</div>
-  <div class="col-lg-2 text-light bg-warning">Critical:${covid.critical
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</div>
-  <div class="col-lg-2 text-light bg-danger">Deaths:${covid.deaths
-    .toString()
-    .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</div>
-  `;
-  document.querySelector(".coronavirus").insertAdjacentHTML("beforeend", html);
-};
-
-const renderHtml = function (country) {
-  //prettier-ignore
-  const html = `
-<div class="container info">
-    <div class="row  mt-4 d-flex justify-content-center">
-        <div class="flag col-lg-4 col-md-5 col-sm-12 d-flex justify-content-center">
-            <img src="${country.flag}" class="img-fluid" alt="Flag"/>     
-        </div>
-        <div class="col-lg-5 col-md-7 offset-lg-1 col-sm-12">
-            <div class="table-responsive">    
-                <table class="table table-borderless table-hover table-sm">
-                    <tr>
-                        <td class="font1">Name:</td>
-                        <td>${country.name} (${country.nativeName})</td>
-                    </tr> 
-                    <tr>
-                        <td class="font1">Capital:</td>
-                        <td>${country.capital}</td>
-                    </tr>
-                    <tr>
-                        <td class="font1">Area:</td>
-                        <td>${country.area
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")} sq Kms</td>
-                    </tr>
-                    <tr>
-                        <td class="font1">Population:</td>
-                        <td>${country.population
-                          .toString()
-                          .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}</td>
-                    </tr>
-                    <tr>
-                        <td class="font1">Currency:</td>
-                        <td>${country.currencies[0].name} (${country.currencies[0].symbol})</td>
-                    </tr>
-
-                    <tr>
-                        <td class="font1">Calling Code:</td>
-                        <td>+${country.callingCodes[0]}</td>
-                    </tr>
-                    <tr>
-                        <td class="font1">Time Zone:</td>
-                        <td>${country.timezones[0]}</td>
-                    </tr>
-                </table>
-            </div>  
-        </div>
-    </div>
-    <div class="row coronavirus">
-
+  <div class="wrapper">
+    <div class="typing-demo">
+    <li class='list_item display-6'>${
+      item.charAt(0).toUpperCase() + item.slice(1)
+    }</li>
     </div>
 </div>
-    `;
-  document.querySelector(".container").insertAdjacentHTML("afterend", html);
+          `;
+  document.querySelector("ul").insertAdjacentHTML("afterend", html);
+  document.querySelector(".typing-demo").style.width = `${item.length + 3}ch`;
 };
 
+//Remove functionality
+const remove = function (e) {
+  const target = e.target.textContent;
+  e.target.classList.add("hidden");
+  const index = items.findIndex((i) => i === target);
+  items.splice(index, 1);
+  localStorage.setItem("items", JSON.stringify(items));
+};
+
+if (JSON.parse(localStorage.getItem("items"))) {
+  items = [...JSON.parse(localStorage.getItem("items"))];
+}
+if (!(items.length === 0)) {
+  items.forEach((item) => addHTML(item));
+  document.querySelectorAll(".list_item").forEach((el) =>
+    el.addEventListener("click", function (e) {
+      remove(e);
+    })
+  );
+}
+
+//Event Listener
+addBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  if (!input.value || input.value === " ") return;
+  const item = input.value.trim();
+  if (item === "") return;
+  input.value = "";
+  items.push(item);
+  localStorage.setItem("items", JSON.stringify(items));
+  addHTML(item);
+  document.querySelector(".list_item").addEventListener("click", function (e) {
+    remove(e);
+  });
+});
+
+delBtn.addEventListener("click", function (event) {
+  event.preventDefault();
+  window.open("#modal", "_self");
+  yesBtn.addEventListener("click", function () {
+    items.splice(0, items.length);
+    localStorage.clear();
+    window.open("#", "_self");
+    input.focus();
+    location.reload();
+  });
+  noBtn.addEventListener("click", function () {
+    window.open("#", "_self");
+    input.focus();
+  });
+});
+
+copyBtn.addEventListener("click", function (e) {
+  e.preventDefault();
+  if (items.length === 0) return;
+
+  navigator.clipboard.writeText(items);
+});
+
+//Listen Enter button
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    if (!input.value || input.value === " ") return;
+    const item = input.value.trim();
+    if (input.value === "") return;
+    input.value = "";
+    items.push(item);
+    localStorage.setItem("items", JSON.stringify(items));
+    addHTML(item);
+    document
+      .querySelector(".list_item")
+      .addEventListener("click", function (e) {
+        remove(e);
+      });
+  }
+});
+//Refresh after 1 min
+let time;
+document.addEventListener("keydown", function () {
+  time = new Date().getTime();
+});
+function refresh() {
+  if (new Date().getTime() - time >= 60000) window.location.reload(true);
+  else setTimeout(refresh, 10000);
+}
+setTimeout(refresh, 10000);
+
+//Splash screen
 const splash = document.querySelector(".splash");
 document.addEventListener("DOMContentLoaded", (e) => {
   setTimeout(() => {
     splash.classList.add("hidden-splash");
   }, 2000);
+});
+
+//Bubbles
+let sec;
+input.addEventListener("keydown", () => {
+  document.querySelector(".typingAnimation").classList.remove("hidden");
+  sec = 3000;
+});
+
+input.addEventListener("keyup", (e) => {
+  setTimeout(
+    () => document.querySelector(".typingAnimation").classList.add("hidden"),
+    sec
+  );
+  // if (sec === 0) {
+  //   // document.querySelector(".typingAnimation").classList.add("hidden");
+  // }
 });
